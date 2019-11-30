@@ -7,9 +7,68 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Welcome to Flutter',
-      home: RandomWords(),
-      theme: ThemeData(primaryColor: Colors.white),
+      title: 'Flutter layout demo',
+      home: buildHomePage("真っ白なキャンパス"),
+    );
+  }
+
+  Widget _buildList() => ListView(
+        children: <Widget>[
+          _tile('西野千明', '真っ白なキャンパス', Icons.theaters),
+          _tile('西野千明', '真っ白なキャンパス', Icons.theaters),
+          _tile('西野千明', '真っ白なキャンパス', Icons.theaters),
+          _tile('西野千明', '真っ白なキャンパス', Icons.theaters),
+          _tile('西野千明', '真っ白なキャンパス', Icons.theaters),
+          _tile('西野千明', '真っ白なキャンパス', Icons.theaters),
+          _tile('西野千明', '真っ白なキャンパス', Icons.theaters),
+          _tile('西野千明', '真っ白なキャンパス', Icons.theaters),
+          _tile('小野寺梓', '真っ白なキャンパス', Icons.theaters),
+          _tile('麦田ひかる', '真っ白なキャンパス', Icons.theaters),
+          _tile('橋本美桜', '真っ白なキャンパス', Icons.theaters),
+          _tile('三浦菜々子', '真っ白なキャンパス', Icons.theaters),
+          _tile('鈴木えま', '真っ白なキャンパス', Icons.theaters),
+        ],
+      );
+
+  ListTile _tile(String title, String subTitle, IconData icon) => ListTile(
+        title: Text(
+          title,
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 20,
+          ),
+        ),
+        subtitle: Text(subTitle),
+        leading: Icon(
+          icon,
+          color: Colors.blue[500],
+        ),
+      );
+
+  Widget _logo() => Image(
+        image: NetworkImage('http://shirokyan.com/images/fix_rgb_wht.png'),
+        fit: BoxFit.contain,
+      );
+
+  Widget buildHomePage(String title) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      body: Center(
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 200,
+                child: _buildList(),
+              ),
+              // ),
+              _logo(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
