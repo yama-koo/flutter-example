@@ -12,37 +12,44 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  Widget _buildList() => ListView(
-        children: <Widget>[
-          _tile('西野千明', '真っ白なキャンパス', Icons.theaters),
-          _tile('西野千明', '真っ白なキャンパス', Icons.theaters),
-          _tile('西野千明', '真っ白なキャンパス', Icons.theaters),
-          _tile('西野千明', '真っ白なキャンパス', Icons.theaters),
-          _tile('西野千明', '真っ白なキャンパス', Icons.theaters),
-          _tile('西野千明', '真っ白なキャンパス', Icons.theaters),
-          _tile('西野千明', '真っ白なキャンパス', Icons.theaters),
-          _tile('西野千明', '真っ白なキャンパス', Icons.theaters),
-          _tile('小野寺梓', '真っ白なキャンパス', Icons.theaters),
-          _tile('麦田ひかる', '真っ白なキャンパス', Icons.theaters),
-          _tile('橋本美桜', '真っ白なキャンパス', Icons.theaters),
-          _tile('三浦菜々子', '真っ白なキャンパス', Icons.theaters),
-          _tile('鈴木えま', '真っ白なキャンパス', Icons.theaters),
-        ],
-      );
+  Widget _buildList() {
+    var tiles = new List<Widget>();
+    for (var i = 0; i < 6; i++) {
+      tiles.add(_tile('西野千明', '真っ白なキャンパス', Icons.theaters));
+      tiles.add(_tile('小野寺梓', '真っ白なキャンパス', Icons.theaters));
+      tiles.add(_tile('麦田ひかる', '真っ白なキャンパス', Icons.theaters));
+      tiles.add(_tile('橋本美桜', '真っ白なキャンパス', Icons.theaters));
+      tiles.add(_tile('三浦菜々子', '真っ白なキャンパス', Icons.theaters));
+      tiles.add(_tile('鈴木えま', '真っ白なキャンパス', Icons.theaters));
+    }
+    return ListView(
+      children: tiles,
+    );
+  }
 
-  ListTile _tile(String title, String subTitle, IconData icon) => ListTile(
-        title: Text(
-          title,
-          style: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 20,
+  Dismissible _tile(String title, String subTitle, IconData icon) =>
+      Dismissible(
+        child: ListTile(
+          title: Text(
+            title,
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 20,
+            ),
+          ),
+          subtitle: Text(subTitle),
+          leading: Icon(
+            icon,
+            color: Colors.blue[500],
           ),
         ),
-        subtitle: Text(subTitle),
-        leading: Icon(
-          icon,
-          color: Colors.blue[500],
+        background: Container(
+          color: Colors.red,
         ),
+        secondaryBackground: Container(
+          color: Colors.green,
+        ),
+        key: UniqueKey(),
       );
 
   Widget _logo() => Image(
@@ -59,11 +66,13 @@ class MyApp extends StatelessWidget {
         child: Container(
           child: Column(
             children: <Widget>[
-              SizedBox(
-                height: 200,
+              LimitedBox(
+                maxHeight: 400,
                 child: _buildList(),
               ),
-              // ),
+              Divider(
+                thickness: 1,
+              ),
               _logo(),
             ],
           ),
