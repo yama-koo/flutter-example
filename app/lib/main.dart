@@ -12,24 +12,24 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter layout demo',
       // initialRoute: '/',
-      routes: {
-        // '/': (context) => FirstScreen(),
-        // '/second': (context) => SecondScreen(),
-        ExtractArgumentsScreen.routeName: (context) => ExtractArgumentsScreen(),
-      },
-      onGenerateRoute: (settings) {
-        if (settings.name == PassArgumentsScreen.routeName) {
-          final ScreenArguments args = settings.arguments;
-          return MaterialPageRoute(
-            builder: (context) {
-              return PassArgumentsScreen(
-                title: args.title,
-                message: args.message,
-              );
-            },
-          );
-        }
-      },
+      // routes: {
+      // '/': (context) => FirstScreen(),
+      // '/second': (context) => SecondScreen(),
+      //   ExtractArgumentsScreen.routeName: (context) => ExtractArgumentsScreen(),
+      // },
+      // onGenerateRoute: (settings) {
+      //   if (settings.name == PassArgumentsScreen.routeName) {
+      //     final ScreenArguments args = settings.arguments;
+      //     return MaterialPageRoute(
+      //       builder: (context) {
+      //         return PassArgumentsScreen(
+      //           title: args.title,
+      //           message: args.message,
+      //         );
+      //       },
+      //     );
+      //   }
+      // },
       home: HomeScreen(),
       // home: FirstRoute(),
       // Scaffold(
