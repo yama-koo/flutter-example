@@ -1,4 +1,7 @@
+import 'package:app/routes.dart';
+import 'package:app/screens.dart';
 import 'package:flutter/material.dart';
+import 'bottom_bar.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,54 +11,44 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter layout demo',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('真っ白なキャンパス'),
-        ),
-        body: Container(
-          child: ListView.builder(
-            itemBuilder: (BuildContext context, int index) {
-              return ListTile(
-                title: Text(listItem[index % 6]),
-                key: UniqueKey(),
+      // initialRoute: '/',
+      routes: {
+        // '/': (context) => FirstScreen(),
+        // '/second': (context) => SecondScreen(),
+        ExtractArgumentsScreen.routeName: (context) => ExtractArgumentsScreen(),
+      },
+      onGenerateRoute: (settings) {
+        if (settings.name == PassArgumentsScreen.routeName) {
+          final ScreenArguments args = settings.arguments;
+          return MaterialPageRoute(
+            builder: (context) {
+              return PassArgumentsScreen(
+                title: args.title,
+                message: args.message,
               );
             },
-            itemCount: 200,
-          ),
-        ),
-        bottomNavigationBar: BottomBar(),
-      ),
-    );
-  }
-}
-
-class BottomBar extends StatefulWidget {
-  _BottomBarState createState() => _BottomBarState();
-}
-
-class _BottomBarState extends State<BottomBar> {
-  int currentIndex = 0;
-
-  void onTap(int index) {
-    setState(() {
-      currentIndex = index;
-    });
-  }
-
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          title: Text('home'),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          title: Text('setting'),
-        ),
-      ],
-      currentIndex: currentIndex,
-      onTap: onTap,
+          );
+        }
+      },
+      home: HomeScreen(),
+      // home: FirstRoute(),
+      // Scaffold(
+      //   appBar: AppBar(
+      //     title: Text('真っ白なキャンパス'),
+      //   ),
+      //   body: Container(
+      //     child: ListView.builder(
+      //       itemBuilder: (BuildContext context, int index) {
+      //         return ListTile(
+      //           title: Text(listItem[index % 6]),
+      //           key: UniqueKey(),
+      //         );
+      //       },
+      //       itemCount: 200,
+      //     ),
+      //   ),
+      //   bottomNavigationBar: BottomBar(),
+      // ),
     );
   }
 }
