@@ -1,7 +1,8 @@
-import 'package:app/routes.dart';
-import 'package:app/screens.dart';
+// import 'package:app/routes.dart';
+// import 'package:app/screens.dart';
+import 'package:app/todo.dart';
 import 'package:flutter/material.dart';
-import 'bottom_bar.dart';
+// import 'bottom_bar.dart';
 
 void main() => runApp(MyApp());
 
@@ -30,7 +31,15 @@ class MyApp extends StatelessWidget {
       //     );
       //   }
       // },
-      home: HomeScreen(),
+      home: TodosScreen(
+        todos: List<Todo>.generate(
+          20,
+          (i) => Todo(
+            'Todo $i',
+            'A description of what needs to be done for Todo $i',
+          ),
+        ),
+      ),
       // home: FirstRoute(),
       // Scaffold(
       //   appBar: AppBar(
