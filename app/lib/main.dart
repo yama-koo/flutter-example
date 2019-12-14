@@ -1,53 +1,42 @@
-// import 'package:app/routes.dart';
-// import 'package:app/screens.dart';
-import 'package:app/client.dart';
-// import 'package:app/todo.dart';
 import 'package:flutter/material.dart';
-// import 'bottom_bar.dart';
-import 'package:http/http.dart' as http;
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
-  MyApp({Key key}) : super(key: key);
-
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  Future<Post> post;
-
-  @override
-  void initState() {
-    super.initState();
-    // post = fetchPost();
-  }
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fetch Data Example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Fetch Data Example'),
+          title: Text('App bar'),
         ),
         body: Center(
-          child: FutureBuilder<List<Photo>>(
-            future: fetchPhotos(http.Client()),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) print(snapshot.error);
-              return snapshot.hasData
-                  ? PhotoList(
-                      photos: snapshot.data,
-                    )
-                  : Center(
-                      child: CircularProgressIndicator(),
-                    );
-            },
+          child: Container(
+            child: ListView(
+              children: <Widget>[
+                // Row(
+                //   mainAxisSize: MainAxisSize.min,
+                //   children: <Widget>[
+                // Container(
+                //   // child: FlutterLogo(),
+                //   width: 100,
+                //   height: 100,
+                //   child: Text('hoge'),
+                // ),
+                ListTile(
+                  leading: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Icon(Icons.add_circle_outline),
+                      FlutterLogo(),
+                    ],
+                  ),
+                  title: Text('いろは唄口上'),
+                ),
+              ],
+              //   ),
+              // ],
+            ),
           ),
         ),
       ),
